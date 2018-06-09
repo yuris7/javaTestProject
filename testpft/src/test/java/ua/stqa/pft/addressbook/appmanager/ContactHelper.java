@@ -2,8 +2,11 @@ package ua.stqa.pft.addressbook.appmanager;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ua.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
@@ -22,9 +25,15 @@ public class ContactHelper extends HelperBase {
 
     }
 
-    public void fillContactForm(ContactData contactData) {
+    public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
+
+        if (creation){
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
     }
 
     public void submitContactCreation() {
@@ -66,6 +75,7 @@ public class ContactHelper extends HelperBase {
 
         wd.switchTo().alert().accept();
     }
+
 
     private void selectContactByName(int id) {
         wd.findElement(By.cssSelector("a[href*='edit.php?id=" + id + "']")).click();

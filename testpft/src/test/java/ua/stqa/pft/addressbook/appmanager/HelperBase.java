@@ -46,4 +46,7 @@ public class HelperBase {
            return false;
        }
     }
+    public int getGroupCount() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
 }

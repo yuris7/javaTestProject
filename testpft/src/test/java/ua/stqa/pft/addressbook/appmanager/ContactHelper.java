@@ -70,6 +70,9 @@ public class ContactHelper extends HelperBase {
 
         click(By.cssSelector("input[value='Delete']"));
     }
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
 
     public void closeAlert() {
 
@@ -83,5 +86,13 @@ public class ContactHelper extends HelperBase {
 
     public void returnToHomePage() {
         click(By.linkText("home"));
+    }
+
+    public void createContact(ContactData contactData, boolean b) {
+       initContactCreation();
+        fillContactForm(
+                new ContactData("test_name", "last_name","test1"),true);
+        submitContactCreation();
+        returnHomePage();
     }
 }

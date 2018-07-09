@@ -2,12 +2,14 @@ package ua.stqa.pft.addressbook.appmanager;
 
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ua.stqa.pft.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -29,7 +31,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
 
-        if (creation){
+        if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -70,6 +72,7 @@ public class ContactHelper extends HelperBase {
 
         click(By.cssSelector("input[value='Delete']"));
     }
+
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
     }
@@ -89,10 +92,25 @@ public class ContactHelper extends HelperBase {
     }
 
     public void createContact(ContactData contactData, boolean b) {
-       initContactCreation();
+        initContactCreation();
         fillContactForm(
-                new ContactData("test_name", "last_name","test1"),true);
+                new ContactData("test_name", "last_name", "test1"), true);
         submitContactCreation();
         returnHomePage();
     }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<>();
+        List<WebElement> elements = wd.findElements(By.name("selected[]"));
+        for (WebElement element : elements) {
+            String name = element.getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            ContactData contact = new ContactData(id, name, null, null);
+            contacts.add(contact);
+        }
+        return contacts;
+    }
 }
+
+
+

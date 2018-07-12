@@ -10,15 +10,13 @@ public class ContactCreationTests extends TestBase{
 
     @Test(enabled = false)
     public void testContactCreation() {
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().initContactCreation();
-        app.getContactHelper().fillContactForm(
-                new ContactData("test_name", "last_name","test1"),true);
-        app.getContactHelper().submitContactCreation();
-        app.getContactHelper().returnHomePage();
-        List<ContactData> after = app.getContactHelper().getContactList();
-
+        List<ContactData> before = app.contact().getContactList();
+        app.contact().initContactCreation();
+        app.contact().fillContactForm(
+                new ContactData().withFirstName("test_name").withLastName("last_name").withGroup("test1"), true);
+        app.contact().submitContactCreation();
+        app.contact().returnHomePage();
+        List<ContactData> after = app.contact().getContactList();
         Assert.assertEquals(after.size(), before.size() + 1);
     }
-
 }

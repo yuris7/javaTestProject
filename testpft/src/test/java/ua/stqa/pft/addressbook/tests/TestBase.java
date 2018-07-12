@@ -16,10 +16,12 @@ public class TestBase {
 
     @AfterSuite
     public void tearDown() {
+
         app.stop();
     }
 
     public ApplicationManager getApp() {
+
         return app;
     }
 }

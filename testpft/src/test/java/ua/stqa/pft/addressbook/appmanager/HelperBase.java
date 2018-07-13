@@ -5,6 +5,8 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import java.io.File;
+
 
 public class HelperBase {
 
@@ -28,6 +30,13 @@ public class HelperBase {
                 }
             }
         }
+    protected void attach(By locator, File file) {
+        if(file != null){
+                wd.findElement(locator).sendKeys(file.getAbsolutePath());
+            }
+        }
+
+    public void homePage() { click(By.linkText("home")); }
 
     public boolean isAlertPresent() {
         try {
@@ -47,6 +56,13 @@ public class HelperBase {
        }
     }
     public int count() {
+
         return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public void contactPage() {
+        if (isElementPresent(By.xpath("//li[contains(@class,  'all') and contains (., 'add new')]")))
+            return;
+        { wd.findElement(By.linkText("add new")).click(); }
     }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="0" passed="0">
+  <reporter-output>
+  </reporter-output>
+  <suite name="ua.stqa.pft.addressbook.tests.TestBase" duration-ms="7" started-at="2018-07-14T20:36:28Z" finished-at="2018-07-14T20:36:28Z">
+    <groups>
+    </groups>
+    <test name="Command line test" duration-ms="7" started-at="2018-07-14T20:36:28Z" finished-at="2018-07-14T20:36:28Z">
+      <class name="ua.stqa.pft.addressbook.tests.TestBase">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:ua.stqa.pft.addressbook.tests.TestBase@21bcffb5]" name="setUp" is-config="true" duration-ms="6193" started-at="2018-07-14T20:36:22Z" finished-at="2018-07-14T20:36:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:ua.stqa.pft.addressbook.tests.TestBase@21bcffb5]" name="tearDown" is-config="true" duration-ms="879" started-at="2018-07-14T20:36:28Z" finished-at="2018-07-14T20:36:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- ua.stqa.pft.addressbook.tests.TestBase -->
+    </test> <!-- Command line test -->
+  </suite> <!-- ua.stqa.pft.addressbook.tests.TestBase -->
+</testng-results>
